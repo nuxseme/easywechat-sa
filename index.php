@@ -15,10 +15,9 @@ $options = [
 echo '<pre>';
 //应用体  负责处理所有请求 调度 返回
 $app = new Application($options);
-//print_r($app);exit;
 $server = $app->server;
 $user = $app->user;
-
+print_r($app);exit;
 $server->setMessageHandler(function($message) use ($user) {
      //$fromUser = $user->get($message->FromUserName);
 

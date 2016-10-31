@@ -99,14 +99,17 @@ class Application extends Container
         //初始化容器
         parent::__construct();
 
+        //应用体绑定config 属性 是一个匿名的属性实例
         $this['config'] = function () use ($config) {
             return new Config($config);
         };
+        //config 实例的debug值
         if ($this['config']['debug']) {
             error_reporting(E_ALL);
         }
-
+        //注册提供的服务
         $this->registerProviders();
+        //注册基础服务
         $this->registerBase();
         //print_r($this);
         $this->initializeLogger();
@@ -187,6 +190,7 @@ class Application extends Container
     private function registerProviders()
     {
         foreach ($this->providers as $provider) {
+            //调用容器的注册函数
             $this->register(new $provider());
         }
     }

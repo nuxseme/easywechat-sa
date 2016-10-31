@@ -32,12 +32,14 @@ namespace Pimple;
  * @author  Fabien Potencier
  */
 //访问数组一样访问对象
+//容器实现了ArrayAccess 实现指定接口 则可以 访问数组一样访问对象  对象的数据可以根据数据的key获取
 class Container implements \ArrayAccess
 {
     //存储属性值
     private $values = array();
     private $factories;
     private $protected;
+
     //冻结池
     private $frozen = array();
     private $raw = array();
@@ -56,7 +58,7 @@ class Container implements \ArrayAccess
         //初始化对象存储
         $this->factories = new \SplObjectStorage();
         $this->protected = new \SplObjectStorage();
-        //设置属性
+        //设置属性 $value 是一个属性的数组，将每个设定的属性加入属性池
         foreach ($values as $key => $value) {
             $this->offsetSet($key, $value);
         }

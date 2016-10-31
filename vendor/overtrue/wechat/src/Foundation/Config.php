@@ -32,4 +32,5 @@ use EasyWeChat\Support\Collection;
  */
 class Config extends Collection
 {
+    //config 实例化调用父级的构造函数
 }
